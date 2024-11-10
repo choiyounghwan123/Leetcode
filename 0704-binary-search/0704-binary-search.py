@@ -2,16 +2,18 @@
 
 class Solution:
     def search(self, nums: list[int], target: int) -> int:
-        def binary_search(left, right):
-            if left <= right:
-                mid = (left + right) // 2
-                if nums[mid] < target:
-                    return binary_search(mid+1, right)
-                elif nums[mid] > target:
-                    return binary_search(left, mid-1)
-                else:
-                    return mid
-            else:
-                return -1
+        left, right = 0, len(nums) - 1
 
-        return binary_search(0, len(nums) - 1)
+        while left <= right:
+            mid = (left + right) // 2
+            
+            if nums[mid] > target:
+                right = mid -1
+            elif nums[mid] < target:
+                left = mid+1
+            else:
+                return mid
+        return -1
+
+
+print(Solution().search(nums=[-1, 0, 3, 5, 9, 12], target=9))
