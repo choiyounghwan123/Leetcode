@@ -1,10 +1,16 @@
-# Two Sum
+# 1. Two Sum
 
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
-        # Brute force
-        
+        hash_map = dict()
+
         for i in range(len(nums)):
-            for j in range(i+1,len(nums)):
-                if nums[i] + nums[j] == target:
-                    return [i,j]
+            if target - nums[i] in hash_map:
+                return [i,hash_map[target - nums[i]]]
+            else:
+                hash_map[nums[i]] = i
+
+
+
+solution = Solution()
+print(solution.twoSum(nums = [2,7,11,15], target = 9))
