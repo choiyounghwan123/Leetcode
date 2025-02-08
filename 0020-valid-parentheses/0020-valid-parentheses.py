@@ -1,27 +1,38 @@
-# 20. Valid Parenthese
+# 20. Valid Parentheses
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        if len(s) < 2:
+
+        if len(s) == 1:
             return False
+
         stack = []
-        for i in s:
-            if i == "[" or i == "(" or i == "{":
-                stack.append(i)
-            elif len(stack) == 0:
-                return False
-            elif i == "]":
-                if stack.pop() != "[":
+        
+        for parenthese in s:
+            if parenthese in [")","]","}"]:
+                if not stack:
                     return False
-            elif i == ")":
-                if stack.pop() != "(":
+            if parenthese == "(":
+                stack.append(parenthese)
+            elif parenthese == "[":
+                stack.append(parenthese)
+            elif parenthese == "{":
+                stack.append(parenthese)
+            elif stack and parenthese == ")":
+                if stack[-1] != "(":
                     return False
+                stack.pop()
+            elif stack and parenthese == "]":
+                if stack[-1] != "[":
+                    return False
+                stack.pop()
             else:
-                if stack.pop() != "{":
+                if stack and stack[-1] != "{":
                     return False
-        if len(stack) != 0:
+                stack.pop()
+        if stack:
             return False
         return True
 
-
-print(Solution().isValid("(("))
+solution = Solution()
+print(solution.isValid(s = "()"))
