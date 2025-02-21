@@ -5,20 +5,12 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        red,white,blue = 0,0,len(nums) - 1
-
-        while white <= blue:
-            print(red,white,blue)
-            if nums[white] < 1:
-                nums[red],nums[white] = nums[white],nums[red]
-                red += 1
-                white += 1
-            elif nums[white] > 1:
-                nums[blue],nums[white] = nums[white],nums[blue]
-                blue -= 1
-            else:
-                white +=1
-        print(nums)
+        for i in range(len(nums)):
+            for j in range(i,len(nums)):
+                if nums[i] > nums[j]:
+                    nums[i],nums[j] = nums[j],nums[i]
 
 
-print(Solution().sortColors(nums = [2,0,2,1,1,0]))
+
+solution = Solution()
+print(solution.sortColors([2,0,2,1,1,0]))
