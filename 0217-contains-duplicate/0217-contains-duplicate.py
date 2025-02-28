@@ -1,15 +1,13 @@
 # 217. Contains Duplicate
-
-import collections
-
 class Solution:
     def containsDuplicate(self, nums: list[int]) -> bool:
-        hash_map = collections.defaultdict(int)
+        hash_map = dict()
 
         for num in nums:
-            if hash_map[num] > 0:
+            if num not in hash_map:
+                hash_map[num] = 1
+            else:
                 return True
-            hash_map[num] += 1
         return False
-
-print(Solution().containsDuplicate(nums = [1,2,3,1]))
+solution = Solution()
+print(solution.containsDuplicate( nums = [1,2,3,1]))
