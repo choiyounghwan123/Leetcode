@@ -1,15 +1,17 @@
-# Product of Array Except self
+# 238. Product of Array Except Self
 
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
-        output = []
-        p = 1
-        for i in range(0,len(nums)):
-            output.append(p)
-            p = p * nums[i]
-
-        p = 1
+        answer = []
+        product = 1
+        for num in nums:
+            answer.append(product)
+            product *= num
+        product = 1
         for i in range(len(nums)-1,-1,-1):
-            output[i] = output[i] * p
-            p = p * nums[i]
-        return output
+            answer[i] = answer[i] * product
+            product *= nums[i]
+        return answer
+
+solution = Solution()
+print(solution.productExceptSelf(nums = [1,2,3,4]))
