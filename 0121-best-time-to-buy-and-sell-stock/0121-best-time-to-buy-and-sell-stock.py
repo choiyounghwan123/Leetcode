@@ -1,13 +1,18 @@
-# Best Time to Buy and Sell Stock
-import sys
-
+# 121. Best Time to Buy and Sell Stock
 
 class Solution:
     def maxProfit(self, prices: list[int]) -> int:
-        min_price = sys.maxsize
-        max_price = 0
+        result = 0
+        min_ = 100000
+        max_ = -1
+        for i in range(len(prices)):
+            if min_ > prices[i]:
+                min_ = prices[i]
+                max_= min_
+                continue
+            max_ = max(max_,prices[i])
+            result = max(result,max_ - min_)
+        return result
 
-        for price in prices:
-            min_price = min(min_price,price)
-            max_price = max(max_price,price-min_price)
-        return max_price
+solution = Solution()
+print(solution.maxProfit(prices = [7,1,5,3,6,4]))
